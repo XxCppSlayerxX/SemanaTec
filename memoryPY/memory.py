@@ -8,12 +8,13 @@ Exercises:
 4. Center single-digit tile.
 5. Use letters instead of tiles.
 """
-
+#Libraries used in the code
 from random import *
 from turtle import *
 
 from freegames import path
 
+#Variables used in the code
 car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
@@ -27,6 +28,7 @@ def square(x, y):
     down()
     color('black', 'white')
     begin_fill()
+    #Draws a square with the given coordinates
     for count in range(4):
         forward(50)
         left(90)
@@ -47,7 +49,7 @@ def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
-
+    #If the mark is None or the mark is the same as the spot or the tiles in the mark and the spot are different, the mark will be the spot
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
@@ -62,14 +64,14 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
-
+    
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
 
     mark = state['mark']
-
+    #If the mark is not None and the hide in the mark is True, the x and y will be the coordinates of the mark and the tiles in the mark will be written in the screen  
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
