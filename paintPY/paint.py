@@ -56,6 +56,7 @@ def rectangle(start, end):
     end_fill()
 
 
+
 def triangle(start, end):
     up()
     goto(start.x, start.y)
