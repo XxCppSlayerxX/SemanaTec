@@ -10,6 +10,7 @@ Exercises
 """
 #Libraries used in the code
 from turtle import *
+import math as math
 
 from freegames import vector
 
@@ -38,7 +39,19 @@ def square(start, end):
 
 def circle(start, end):
     """Draw circle from start to end."""
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+    
+    # Calculate the radius based on the start and end points
+    radius = math.sqrt((end.x - start.x)**2 + (end.y - start.y)**2)
+    
+    # Draw the circle
+    for count in range(360):
+        forward(3.141592 * radius / 180.0)
+        left(1)
+    end_fill()
 
 
 def rectangle(start, end):
@@ -97,6 +110,8 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+#Added new color 
+onkey(lambda: color('yellow'), 'Y')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
