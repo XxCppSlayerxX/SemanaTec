@@ -8,11 +8,13 @@ Exercises
 4. Change the speed of the ball.
 """
 
+#Libraries used in the code
 from random import randrange
 from turtle import *
 
 from freegames import vector
 
+#Variables used in the code, ball is the projectile, speed is the speed of the projectile, targets is the list of targets
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
@@ -20,7 +22,7 @@ targets = []
 
 def tap(x, y):
     """Respond to screen tap."""
-    if not inside(ball):
+    if not inside(ball): #If the ball is not inside the screen, the ball will be placed at the position of the tap
         ball.x = -199
         ball.y = -199
         speed.x = (x + 200) / 25
@@ -29,13 +31,13 @@ def tap(x, y):
 
 def inside(xy):
     """Return True if xy within screen."""
-    return -200 < xy.x < 200 and -200 < xy.y < 200
+    return -200 < xy.x < 200 and -200 < xy.y < 200 #Returns True if the xy is inside the screen, False if it is not
 
 
 def draw():
     """Draw ball and targets."""
     clear()
-
+    
     for target in targets:
         goto(target.x, target.y)
         dot(20, 'blue')
@@ -49,6 +51,7 @@ def draw():
 
 def move():
     """Move ball and targets."""
+    #If the ball is inside the screen, the speed of the ball will be reduced by 0.35 and the ball will move
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)

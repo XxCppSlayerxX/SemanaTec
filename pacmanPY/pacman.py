@@ -8,12 +8,13 @@ Exercises
 4. Make the ghosts faster/slower.
 5. Make the ghosts smarter.
 """
-
+#Libraries used in the code
 from random import choice
 from turtle import *
 
 from freegames import floor, vector
 
+#Variables used in the code
 state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
@@ -26,6 +27,7 @@ ghosts = [
     [vector(100, -160), vector(-5, 0)],
 ]
 # fmt: off
+#The tiles are the map of the game, 0 is a wall, 1 is a point, 2 is a point that has been eaten
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -92,7 +94,7 @@ def world():
     """Draw world using path."""
     bgcolor('black')
     path.color('blue')
-
+    
     for index in range(len(tiles)):
         tile = tiles[index]
 
@@ -118,7 +120,7 @@ def move():
         pacman.move(aim)
 
     index = offset(pacman)
-
+    #If the tiles in the index is 1, the tiles in the index will be 2, the score will be increased by 1 and a square will be drawn in the screen
     if tiles[index] == 1:
         tiles[index] = 2
         state['score'] += 1

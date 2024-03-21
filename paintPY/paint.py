@@ -8,7 +8,7 @@ Exercises
 4. Complete triangle.
 5. Add width parameter.
 """
-
+#Libraries used in the code
 from turtle import *
 
 from freegames import vector
@@ -54,7 +54,7 @@ def triangle(start, end):
 def tap(x, y):
     """Store starting point or draw shape."""
     start = state['start']
-
+    #If the start is None, the start will be the position of the tap, if it is not, the end will be the position of the tap
     if start is None:
         state['start'] = vector(x, y)
     else:
