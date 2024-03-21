@@ -9,9 +9,7 @@ Exercises
 5. Make the ghosts smarter.
 """
 #Libraries used in the code
-from random import choice
 from turtle import *
-
 from freegames import floor, vector
 
 #Variables used in the code
@@ -120,7 +118,6 @@ def move():
         pacman.move(aim)
 
     index = offset(pacman)
-    #If the tiles in the index is 1, the tiles in the index will be 2, the score will be increased by 1 and a square will be drawn in the screen
     if tiles[index] == 1:
         tiles[index] = 2
         state['score'] += 1
@@ -133,9 +130,19 @@ def move():
     dot(20, 'yellow')
 
     for point, course in ghosts:
-        if valid(point + course):
-            point.move(course)
+        # Calculate direction towards Pacman
+        direction_to_pacman = pacman - point
+        # Choose the next move to get closer to Pacman
+        next_move = vector(0, 0)
+        if abs(direction_to_pacman.x) > abs(direction_to_pacman.y):
+            next_move.x = 5 if direction_to_pacman.x > 0 else -5
         else:
+            next_move.y = 5 if direction_to_pacman.y > 0 else -5
+
+        if valid(point + next_move):
+            point.move(next_move)
+        else:
+            # If unable to move towards Pacman, choose a random direction
             options = [
                 vector(5, 0),
                 vector(-5, 0),
