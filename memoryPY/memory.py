@@ -16,7 +16,7 @@ from freegames import path
 
 #Variables used in the code
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ123456") * 2
 state = {'mark': None}
 hide = [True] * 64
 
@@ -80,7 +80,7 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 14, y - 3)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
