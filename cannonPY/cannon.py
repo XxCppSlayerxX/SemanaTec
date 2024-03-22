@@ -25,8 +25,8 @@ def tap(x, y):
     if not inside(ball): #If the ball is not inside the screen, the ball will be placed at the position of the tap
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 600) / 25 #made faster the movemnt of the ball
+        speed.y = (y + 600) / 25
 
 
 def inside(xy):
@@ -51,17 +51,16 @@ def draw():
 
 def move():
     """Move ball and targets."""
-    #If the ball is inside the screen, the speed of the ball will be reduced by 0.35 and the ball will move
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
+        target.x -= 2 #The targets will move to the left at a faster pace
 
     if inside(ball):
-        speed.y -= 0.35
+        #The speed of the ball wont be reduced
         ball.move(speed)
 
     dupe = targets.copy()
@@ -77,7 +76,7 @@ def move():
         if not inside(target):
             return
 
-    ontimer(move, 50)
+    ontimer(move, 35)
 
 
 setup(420, 420, 370, 0)
