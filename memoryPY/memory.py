@@ -20,6 +20,8 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
+#Count Taps
+tapCount = 0
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -46,6 +48,7 @@ def xy(count):
 
 
 def tap(x, y):
+    global tapCount #Global variable to count taps
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
@@ -56,10 +59,12 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        tapCount += 1 #Count taps
 
 
 def draw():
     """Draw image and tiles."""
+    global tapCount #Global variable to count taps
     clear()
     goto(0, 0)
     shape(car)
@@ -78,6 +83,19 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
+
+    # Display tap count
+    up()
+    goto(-180, 180)  # Adjust coordinates as needed
+    color('black')
+    write(f'Tap Count: {tapCount}', font=('Arial', 16, 'normal'))
+    
+    # Check if all tiles are revealed
+    if all(h == False for h in hide):
+        up()
+        goto(-50, 0)  # Adjust coordinates as needed
+        color('black')
+        write("¡Todos los cuadros se han destapado!", font=('Arial', 16, 'normal'))
 
     update()
     ontimer(draw, 100)
