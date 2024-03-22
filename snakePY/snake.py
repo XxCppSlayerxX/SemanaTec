@@ -64,6 +64,14 @@ def move():
     update()
     ontimer(move, 100)
 
+#randomly wiht low chances, move food one segment in any direction each step, without going out of the screen
+def moveFood():
+    rand = randrange(0, 100)
+    if(rand < 25 and inside(food)):
+        food.x += randrange(-1, 2) * 10
+        food.y += randrange(-1, 2) * 10
+    ontimer(moveFood, 200)
+
 
 food_color = choice(colors)
 snake_color = choice([color for color in colors if color != food_color])
@@ -87,4 +95,5 @@ onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 moveFood()
 move()
+moveFood()
 done()
