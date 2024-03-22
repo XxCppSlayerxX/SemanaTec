@@ -25,8 +25,8 @@ def tap(x, y):
     if not inside(ball): #If the ball is not inside the screen, the ball will be placed at the position of the tap
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 600) / 25 #made faster the movemnt of the ball
-        speed.y = (y + 600) / 25
+        speed.x = (x + 650) / 25 #made faster the movemnt of the ball
+        speed.y = (y + 650) / 25
 
 
 def inside(xy):
