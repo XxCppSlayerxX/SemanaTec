@@ -112,6 +112,7 @@ onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
 #Added new color 
 onkey(lambda: color('yellow'), 'Y')
+onkey(lambda: color('purple'), 'P')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
