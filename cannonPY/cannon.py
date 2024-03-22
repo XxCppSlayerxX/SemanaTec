@@ -74,7 +74,9 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            targets.remove(target)
+            new_y = randrange(-150, 150)
+            target.y = new_y
 
     ontimer(move, 35)
 
